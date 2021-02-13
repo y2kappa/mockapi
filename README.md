@@ -11,6 +11,19 @@ $ cat ~/.cargo/config
 linker = "x86_64-linux-musl-gcc"
 ```
 
+
 References:
 - https://timryan.org/2018/07/27/cross-compiling-linux-binaries-from-macos.html
 - https://john-millikin.com/notes-on-cross-compiling-rust
+
+## To build on netlify
+```
+cat rust-toolchain
+[toolchain]
+channel = "stable"
+components = ["rustfmt", "clippy"]
+targets = ["x86_64-unknown-linux-musl"]
+```
+
+References:
+- https://docs.netlify.com/configure-builds/manage-dependencies/#rust
