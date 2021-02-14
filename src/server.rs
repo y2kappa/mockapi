@@ -5,7 +5,6 @@ use std::convert::Infallible;
 type Error = Box<dyn std::error::Error + Send + Sync + 'static>;
 
 pub mod handler;
-pub mod types;
 
 #[tokio::main]
 pub async fn main() -> Result<(), Error> {
@@ -19,9 +18,8 @@ pub async fn main() -> Result<(), Error> {
     Ok(())
 }
 
-async fn handle(req: Request<Body>) -> Result<Response<Body>, Error> {
-    let response = handler::handle(types::Request::try_from_hyper(req).await?)
-        .await
-        .unwrap();
-    Ok(types::Response::into_hyper(response).unwrap())
+async fn handle(request: Request<Body>) -> Result<Response<Body>, Error> {
+    let req = llambda::Request::from_hyper(request).await?;
+    let resp = handler::handle(req).await?;
+    llambda::Response::into_hyper(resp)
 }

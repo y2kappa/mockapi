@@ -1,6 +1,6 @@
 type Error = Box<dyn std::error::Error + Send + Sync + 'static>;
 
-use crate::types::{Request, Response};
+use llambda::{Request, Response};
 
 pub async fn handle(request: Request) -> Result<Response, Error> {
     println!("Request {:?}", request);
