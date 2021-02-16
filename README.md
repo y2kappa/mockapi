@@ -2,6 +2,12 @@
 A public service api to help test http calls.
 
 
+## Run locally
+```
+$ cargo build
+$ ./target/debug/server
+```
+
 ## Build on Mac for linux
 ```
 $ rustup target add x86_64-unknown-linux-musl

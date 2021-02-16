@@ -1,4 +1,3 @@
-// Hyper dependencies
 use hyper::service::{make_service_fn, service_fn};
 use hyper::{Body, Request, Response, Server};
 use std::convert::Infallible;
@@ -20,6 +19,10 @@ pub async fn main() -> Result<(), Error> {
 
 async fn handle(request: Request<Body>) -> Result<Response<Body>, Error> {
     let req = llambda::Request::from_hyper(request).await?;
-    let resp = handler::handle(req).await?;
-    llambda::Response::into_hyper(resp)
+    let lambda_response = handler::handle(req).await?;
+    let resp = llambda::response::from_lambda(lambda_response);
+
+    println!("Response {:?}", resp);
+
+    Ok(resp)
 }
