@@ -9,9 +9,9 @@ pub async fn handle(req: Request) -> Result<Response<Body>, Error> {
 
     let body = match req {
         Request::Get(GetRequest { path, parameters }) => match path.as_str() {
-            "/quotes" => routes::quote(),
-            "/jokes" => routes::joke(),
-            "/delay" => routes::delay(parameters),
+            "/.netlify/functions/mockapi/quotes" => routes::quote(),
+            "/.netlify/functions/mockapi/jokes" => routes::joke(),
+            "/.netlify/functions/mockapi/delay" => routes::delay(parameters),
             _ => "Not implemented!".to_string(),
         },
         _ => "🦀 Hello, Netlify 🦀".to_string(),
