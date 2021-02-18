@@ -3,6 +3,7 @@ use hyper::{Body, Request, Response, Server};
 use std::convert::Infallible;
 type Error = Box<dyn std::error::Error + Send + Sync + 'static>;
 
+mod data_provider;
 pub mod handler;
 
 #[tokio::main]
@@ -18,7 +19,7 @@ pub async fn main() -> Result<(), Error> {
 }
 
 async fn handle(request: Request<Body>) -> Result<Response<Body>, Error> {
-    let req = llambda::Request::from_hyper(request).await?;
+    let req = llambda::request::Request::from_hyper(request).await?;
     let lambda_response = handler::handle(req).await?;
     let resp = llambda::response::from_lambda(lambda_response);
 
