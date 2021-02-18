@@ -1,6 +1,11 @@
 # mockapi
 A public service api to help test http calls.
 
+If you ever need a quick http endpoint with a simple response:
+
+- [/quotes](https://vigorous-hypatia-2a3bf1.netlify.app/.netlify/functions/mockapi/quotes)
+- [/jokes](https://vigorous-hypatia-2a3bf1.netlify.app/.netlify/functions/mockapi/jokes)
+- [/delay?seconds=5](https://vigorous-hypatia-2a3bf1.netlify.app/.netlify/functions/mockapi/delay?seconds=5)
 
 ## Run locally
 ```
